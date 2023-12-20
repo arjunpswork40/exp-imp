@@ -1,0 +1,79 @@
+.sidebar {
+  width: 15%;
+  position: fixed;
+  height: 100%;
+  border-right: 2px solid #e5e5e5;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll; /* Use scroll to always show the scrollbar */
+  box-sizing: border-box;
+}
+
+.logo-container {
+  margin-bottom: -1rem;
+}
+
+.logo-container p {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+.sidebarMob{
+  display: none;
+}
+@media screen and (max-width: 640px) {
+  .sidebar{
+    width: 28%;
+    left: -20px;
+    display: none;
+  }
+  .sidebarMob{
+    display: block;
+  }
+  .sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 80px;
+    left: 0;
+    background-color: #f6f6f6;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: black;
+    display: block;
+    transition: 0.3s;
+  }
+
+  .sidenav a:hover {
+    color: greenyellow;
+  }
+
+  .openCloseBtn{
+    font-size:18px;
+    cursor:pointer;
+    margin-left: 1rem;
+  }
+
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    color: black;
+  }
+  .mobFilters{
+    margin-left: 1rem;
+    color: black;
+  }
+}

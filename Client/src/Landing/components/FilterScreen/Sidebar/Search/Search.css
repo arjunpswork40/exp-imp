@@ -1,0 +1,20 @@
+input {
+    padding: 8px 3px;
+    border: none;
+    background: #f7f6f6;
+    outline: none;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    position: relative;
+    width: 12rem;
+  }
+@media screen and (max-width: 640px) {
+  input{
+    width: 14rem !important;
+    color: white;
+    background-color: black;
+  }
+
+}
+  

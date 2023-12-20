@@ -1,0 +1,152 @@
+.container {
+    padding: 1.5rem;
+    display: flex;
+    position: fixed;
+    width: 100%;
+    z-index: 9999;
+    top: 0;
+    background-color: #ffffff;
+    color: rgb(2, 2, 2);
+}
+.scrolled {
+    background-color: #000000d5; /* Change to your desired color */
+    color: white; /* Change text color as needed */
+  }
+.logoNav {
+    display: flex; /* Use flexbox to align children vertically */
+    align-items: center; /* Align children vertically in the center */
+    text-decoration: none; /* Remove underlines from the link text */
+    color: #000000; /* Set the text color as needed */
+  }
+  .logoNav img {
+    vertical-align: middle; /* Align the image vertically in the middle */
+    margin-right: 8px; /* Add spacing between the image and the text */
+  }
+.logo {
+    display: flex;
+    align-items: center;
+    flex:1;
+    gap: 1rem;
+}
+.logoNav>img{
+    width: 2.5rem;
+    height: 2.5rem;
+}
+.logo>a{
+    width: 2.5rem;
+    height: 2.5rem;
+}
+.logo>span{
+    font-weight: 600;
+}
+.right{
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+}
+.menu{
+    display: flex;
+    gap: 2rem;
+    font-weight: 500;
+    list-style: none;
+}
+.menu>li:hover{
+    color: #fe956f;
+    cursor: pointer;
+}
+.search{
+    width: 7rem;
+    outline: none;
+    height: 100%;
+    border: none;
+    border-radius: 5px;
+    padding:0.5rem
+}
+.cart{
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+}
+.bars{
+    display: none;
+}
+.login{
+    border: 2px solid black;
+    padding: 5px;
+    border-radius: 5%;
+}
+@media screen and (max-width: 856px) {
+    .search{
+        display: none;
+    }
+    .right{
+        gap: 1rem;
+    }
+    .container {
+        padding: 1.5rem;
+        display: flex;
+    }
+}
+.openMenuMobile {
+    padding: 0 40px !important;
+  }
+  
+.closedMenuMobile {
+    display: grid !important;
+    grid-template-columns: 2fr 2fr !important;
+  }
+@media screen and (max-width: 640px) {
+    .openMenuMobile {
+        padding: 0 40px !important;
+      }
+      
+    .closedMenuMobile {
+        display: grid !important;
+        grid-template-columns: 2fr 2fr !important;
+      }
+    .right{
+        position: absolute;
+        right: 2rem;
+        z-index: 9999;
+        background: #57ff31c4;
+        color: var(--black);
+        border-radius: 5px;
+        flex-direction: column;
+        padding: 1rem;
+        /* padding-left: 40px; */
+        display: grid;
+        grid-template-columns: 2fr 2fr;
+    }
+    .menu{
+        flex-direction: column;
+        margin-left: -2rem;
+        display: none;
+    }
+    .bars{
+        display: block;
+        position: relative;
+        left: 4px;
+        width: 5px;
+    }
+    .search{
+        display: none;
+    }
+    .container {
+        padding: 1.5rem;
+        display: flex;
+        background-color: black;
+        color: white;
+    }
+    .logoNav {
+        display: flex; /* Use flexbox to align children vertically */
+        align-items: center; /* Align children vertically in the center */
+        text-decoration: none; /* Remove underlines from the link text */
+        color: #ffffff; /* Set the text color as needed */
+      }
+      .logoNav img {
+        vertical-align: middle; /* Align the image vertically in the middle */
+        margin-right: 8px; /* Add spacing between the image and the text */
+      }
+      
+}
