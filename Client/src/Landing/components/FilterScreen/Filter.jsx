@@ -19,12 +19,12 @@
 //     const handleChange = (selectedOption) => {
 //       setSelectedCategory(selectedOption);
 //     };
-  
+
 //     return(
 //         <>
 //             <Header/>
 //             <header class={css.fixedHeader}>
-//                 <div class={css.filterHeader}> 
+//                 <div class={css.filterHeader}>
 //                     <DropdownButton id="dropdown-basic-button" title="Country" variant="secondary" className={css.dropdown}>
 //                         <Dropdown.Item href="#/action-1">India</Dropdown.Item>
 //                         <Dropdown.Item href="#/action-2">Africa</Dropdown.Item>
@@ -46,7 +46,7 @@
 //                             <div  className={css.leftHeaderOne}>
 //                                 <div className={css.leftHeaderTwo}>
 //                                     <span>Filters</span>
-                                   
+
 //                                 </div>
 //                             </div>
 //                         </section>
@@ -61,13 +61,13 @@
 //                             />
 //                 </div>
 //                 <div className={css.right}>
-                    
+
 //                 </div>
 //             </div>
 
 //             <Footer />
 
-            
+
 //         </>
 //     )
 // }
@@ -131,7 +131,7 @@ export default function Filter() {
 
     return filteredProducts.map(
       ({ img, title, star, reviews, prevPrice, newPrice }) => (
-        <a href={`product-detail/${Math.random()}`} class="card-link" key={Math.random()}><Card
+        <a href={`product-detail/${Math.random()}`} className="card-link" key={Math.random()}><Card
           key={Math.random()}
           img={img}
           title={title}

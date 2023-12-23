@@ -15,15 +15,8 @@ const Testimonials = () => {
                     <span>Empowering global trade: Seamlessly connect, import, export, thrive everywhere.
                     </span>
                 </div>
-                <motion.img
-                    transition={transition}
-                    initial={{ bottom: "-20rem" }}
-                    whileInView={{ bottom: "0rem" }}
-                    animate={{
-                        scale: [1, 2, 2, 1, 1],
-                        rotate: [0, 0, 270, 270, 0],
-                        borderRadius: ["20%", "20%", "50%", "50%", "20%"],
-                      }}
+                <img
+
                     src={Hero}
                     alt=""
                 />
@@ -38,7 +31,7 @@ const Testimonials = () => {
 
             <div className={css.carousal}>
                 <Swiper
-                    slidesPerView={3} 
+                    slidesPerView={3}
                     slidesPerGroup={1}
                     spaceBetween={20}
                     className={css.tCarousel}
@@ -57,15 +50,14 @@ const Testimonials = () => {
                     {
                         TestimonialsData.map((testimonial,i)=>(
                             <SwiperSlide key={i}>
-                                <motion.div 
-                                    whileHover={{ scale: 1.0}}
-                                    whileTap={{ scale: 0.5 }} 
+                                <div
+
                                     className={css.testimonial}>
                                     <img src={testimonial.image} alt="" />
                                     <span>{testimonial.comment}</span>
                                     <hr/>
                                     <span>{testimonial.name}</span>
-                                </motion.div>
+                                </div>
                             </SwiperSlide>
                         ))
                     }
@@ -76,3 +68,5 @@ const Testimonials = () => {
 }
 
 export default Testimonials
+
+

@@ -19,17 +19,16 @@ import NorthAmerica from "../../assets/North_America.png"
 
 const Slider = () => {
     return (
-        <motion.div whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }} className="s-container">
+        <div className="s-container">
             <Swiper
                 modules={[Pagination, Navigation]}
-                className="mySwiper" 
+                className="mySwiper"
                 navigation={true}
                 loopFillGroupWithBlank={true}
-                slidesPerView={3} 
-                spaceBetween={40} 
-                slidesPerGroup={1} 
-                loop={true} 
+                slidesPerView={3}
+                spaceBetween={40}
+                slidesPerGroup={1}
+                loop={true}
                 breakpoints={{
                     640: {
                         slidesPerView: 3,
@@ -43,7 +42,7 @@ const Slider = () => {
                     <SwiperSlide>
                         <motion.div
                             whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 1.5 }} 
+                            whileTap={{ scale: 1.5 }}
                             className="left-s">
                             <div className="name">
                                 <span> {slide.name} </span>
@@ -60,14 +59,13 @@ const Slider = () => {
                             className="left-s">
                             <div className="name">
                                 <span> Africa </span>
-                                <span> Africa is the world's second-largest and second-most populous continent, after Asia in both aspects </span>
+                                <span> Africa is the world&apos;s second-largest and second-most populous continent, after Asia in both aspects </span>
                             </div>
-                            <div 
+                            <div
                                  className="bottom-content">
                                 <span> Vast </span>
-                                <motion.div  
-                                whileHover={{ scale: 1.1,color:'white', backgroundColor:'black' }}
-                                whileTap={{ scale: 1.5 }}>Shop Now</motion.div>
+                                <div
+                               >Shop Now</div>
                             </div>
                         </div>
                         <img src={Africa} alt="product" className='img-p' />
@@ -79,12 +77,11 @@ const Slider = () => {
                                 <span> Asia </span>
                                 <span> Asia is the largest continent in the world by both land area and population. </span>
                             </div>
-                            <div 
+                            <div
                                  className="bottom-content">
                                 <span> Diverse</span>
-                                <motion.div  
-                                whileHover={{ scale: 1.1,color:'white', backgroundColor:'black' }}
-                                whileTap={{ scale: 1.5, color:'aqua' }}>Shop Now</motion.div>
+                                <div
+                                >Shop Now</div>
                             </div>
                         </div>
                         <img src={Asia} alt="product" className='img-p' />
@@ -96,16 +93,15 @@ const Slider = () => {
                                 <span> Europe </span>
                                 <span> Europe is a continent comprising the westernmost peninsulas of Eurasia. </span>
                             </div>
-                            <div 
+                            <div
                                  className="bottom-content">
                                 <span> Cultural </span>
-                                <motion.div  
-                                whileHover={{ scale: 1.1,color:'white', backgroundColor:'black' }}
-                                whileTap={{ scale: 1.5 }}>Shop Now</motion.div>
+                                <div
+                               >Shop Now</div>
                             </div>
                         </div>
                         <img src={Europe} alt="product" className='img-p' />
-                    </SwiperSlide> 
+                    </SwiperSlide>
                     <SwiperSlide>
                         <div
                             className="left-s">
@@ -113,16 +109,15 @@ const Slider = () => {
                                 <span> North America </span>
                                 <span> North America covers an area of about 24,709,000 square kilometers (9,540,000 square miles) </span>
                             </div>
-                            <div 
+                            <div
                                  className="bottom-content">
                                 <span> Expansive</span>
-                                <motion.div  
-                                whileHover={{ scale: 1.1,color:'white', backgroundColor:'black' }}
-                                whileTap={{ scale: 1.5 }}>Shop Now</motion.div>
+                                <div
+                                >Shop Now</div>
                             </div>
                         </div>
                         <img src={NorthAmerica} alt="product" className='img-p' />
-                    </SwiperSlide> 
+                    </SwiperSlide>
                     <SwiperSlide>
                         <div
                             className="left-s">
@@ -130,12 +125,11 @@ const Slider = () => {
                                 <span> South America </span>
                                 <span> South America is a continent entirely in the Western Hemisphere and mostly in the Southern Hemisphere. </span>
                             </div>
-                            <div 
+                            <div
                                  className="bottom-content">
                                 <span> Lively </span>
-                                <motion.div  
-                                whileHover={{ scale: 1.1,color:'white', backgroundColor:'black' }}
-                                whileTap={{ scale: 1.5 }}>Shop Now</motion.div>
+                                <div
+                               >Shop Now</div>
                             </div>
                         </div>
                         <img src={SouthAmerica} alt="product" className='img-p' />
@@ -145,14 +139,13 @@ const Slider = () => {
                             className="left-s">
                             <div className="name">
                                 <span> Antarctica </span>
-                                <span> Antarctica is Earth's southernmost and least-populated continent. </span>
+                                <span> Antarctica is Earth&apos;s southernmost and least-populated continent. </span>
                             </div>
-                            <div 
+                            <div
                                  className="bottom-content">
                                 <span> Frozen </span>
-                                <motion.div  
-                                whileHover={{ scale: 1.1,color:'white', backgroundColor:'black' }}
-                                whileTap={{ scale: 1.5 }}>Shop Now</motion.div>
+                                <div
+                               >Shop Now</div>
                             </div>
                         </div>
                         <img src={Antarctica} alt="product" className='img-p' />
@@ -164,18 +157,17 @@ const Slider = () => {
                                 <span> Australia </span>
                                 <span> Australia, officially the Commonwealth of Australia, is a sovereign country. </span>
                             </div>
-                            <div 
+                            <div
                                  className="bottom-content">
                                 <span> Unique </span>
-                                <motion.div  
-                                whileHover={{ scale: 1.1,color:'white', backgroundColor:'black' }}
-                                whileTap={{ scale: 1.5 }}>Shop Now</motion.div>
+                                <div
+                              >Shop Now</div>
                             </div>
                         </div>
                         <img src={Australia} alt="product" className='img-p' />
                     </SwiperSlide>
             </Swiper>
-        </motion.div>
+        </div>
     )
 }
 

@@ -1,7 +1,8 @@
 // import { FiHeart } from "react-icons/fi";
 // import { AiOutlineShoppingCart, AiOutlineUserAdd } from "react-icons/ai";
-import "./Nav.css";
+import  './Nav.css'
 
+// eslint-disable-next-line react/prop-types
 const Nav = ({ handleInputChange, query }) => {
   return (
     <nav>
