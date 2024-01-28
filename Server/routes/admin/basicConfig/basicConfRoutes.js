@@ -7,7 +7,8 @@ const {
     createAdmin,
     insertBulkTestDataToDB,
     insertDataToCategoryAndSubCategory,
-    oneTimeProcessForDataTypeAndNameInsertionOnCategory
+    oneTimeProcessForDataTypeAndNameInsertionOnCategory,
+    createCountryEntry
 } = require('../../../app/controllers/admin/basicConfig/adminBasicConfigController')
 
 
@@ -16,5 +17,5 @@ router.get("/create-admin", createAdmin);
 router.get("/insert-bulk-data-to-db", insertBulkTestDataToDB);
 router.get("/insert-bulk-data-to-category-subcategory", insertDataToCategoryAndSubCategory);
 router.get('/add-data-field-and-name-to-category', oneTimeProcessForDataTypeAndNameInsertionOnCategory);
-
+router.get('/countries-insert',createCountryEntry);
 module.exports = router;

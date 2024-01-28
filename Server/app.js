@@ -16,9 +16,10 @@ const csrf = require('csurf');
 const { isAuthenticated } = require('./app/middlewares/auth/isAuthenticated')
 const flash = require('connect-flash');
 const { isExcludedUrl } = require('./utils/urlMatchCheck');
+const cors = require('cors');
 
 const app = express();
-
+app.use(cors());
 app.use((req, res, next) => {
   let activeMenu = '';
   if (req.originalUrl.startsWith('/admin')) {
@@ -34,39 +35,16 @@ app.use((req, res, next) => {
 
 //Admin Routes
 
-const indexRouter = require("./routes/index");
-const usersRouter = require("./routes/users");
-const adminAuthRouter = require("./routes/admin/auth/adminAuth");
-const adminDashboardRouter = require("./routes/admin/dashboard/dashboardRoutes");
-const adminBasicConfig = require("./routes/admin/basicConfig/basicConfRoutes");
-const adminForgotPassword = require("./routes/admin/auth/forgotPassword/adminForgotPasswordRoute");
-const adminChangePassword = require("./routes/admin/settings/changePassword/changePasswordRoutes");
-const adminFeedback = require("./routes/admin/feedback/feedbackRouter");
-const adminAppDetails = require("./routes/admin/appDetails/adminAppDetailRouter");
-const adminComingSoon = require("./routes/admin/comingSoon/comingSoonRouter");
-const adminAdvertisement = require('./routes/admin/advertisement/advertisementRouter')
-const adminCategory = require('./routes/admin/category/categoryRouter')
-const adminManageCategory = require('./routes/admin/settings/category/categoryManageRoutes')
-
-// API routes V1
-const appDetails = require("./routes/api/appDetails/appDetailsRouter");
-const feedback = require("./routes/api/feedback/feedbackController");
-const advertisement = require('./routes/api/advertisement/advertisementRoute');
-const home = require('./routes/api/home/homeRouter');
-
-// API routes V2
-const appDetailsV2 = require("./routes/api_v2/appDetails/appDetailsRouter");
-const feedbackV2 = require("./routes/api_v2/feedback/feedbackController");
-const advertisementV2 = require('./routes/api_v2/advertisement/advertisementRoute');
-const homeV2 = require('./routes/api_v2/home/homeRouter');
+const authRoutes = require('./routes/api/admin/adminAuthRoutes')
+const userAuthRoutes = require('./routes/api/user/auth/userAuthRoutes')
+const basicConfig = require('./routes/admin/basicConfig/basicConfRoutes')
+const adminDashboardRoutes = require('./routes/api/admin/dashboardRoutes')
+const adminContinentRoutes = require('./routes/api/admin/continentsRoutes')
 
 // General Routes
 const genralDetails = require("./routes/genaralRuotes")
 
-// view engine setup
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "ejs");
-app.use(expressLayouts);
+
 app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(bodyParser.json());
 // app.use(express.urlencoded({ extended: true }));
@@ -134,33 +112,14 @@ connectDb();
 // app.use("/users", usersRouter);
 
 // Admin Routes
+app.use("/api/admin",authRoutes);
+app.use("/api/admin/dashboard",adminDashboardRoutes)
+app.use("/api/user",userAuthRoutes);
+app.use("/",basicConfig);
+app.use("/api/admin/continents",adminContinentRoutes)
 
-app.use("/admin", adminAuthRouter);
-app.use("/admin/dashboard", isAuthenticated, adminDashboardRouter);
-app.use("/admin/basic-config", adminBasicConfig);
-app.use("/admin/forgot-password", adminForgotPassword);
-app.use("/admin/settings/change-password", isAuthenticated, adminChangePassword);
-app.use("/admin/feedback", isAuthenticated, adminFeedback);
-app.use("/admin/app-details", isAuthenticated, adminAppDetails);
-app.use("/admin/coming-soon", isAuthenticated, adminComingSoon);
-app.use("/admin/advertisements", isAuthenticated, adminAdvertisement)
-app.use("/admin/category", isAuthenticated, adminCategory);
-app.use("/admin/settings/category", isAuthenticated, adminManageCategory);
+app.use('/country_flags', express.static(path.join(__dirname, 'public/assets/images/country_flags')));
 
-
-// API Routes V1
-
-app.use("/api/app-details", appDetails);
-app.use("/api/feedback", feedback);
-app.use("/api/advertisement", advertisement);
-app.use("/api/home", home)
-
-// API Routes V2
-
-app.use("/api/v2/app-details", appDetailsV2);
-app.use("/api/v2/feedback", feedbackV2);
-app.use("/api/v2/advertisement", advertisementV2);
-app.use("/api/v2/home", homeV2)
 
 // General Routes
 
@@ -175,11 +134,6 @@ app.use(express.static('public'))
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-
-  if (req.user) {
-    res.redirect('/admin/coming-soon')
-  }
-  res.redirect('/admin/login')
   next(createError(404));
 });
 

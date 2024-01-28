@@ -1,3 +1,5 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import "./Category.css";
 import Input from "../../../Generals/Input";
 
@@ -40,4 +42,7 @@ function Category({ handleChange }) {
   );
 }
 
+Category.propTypes = {
+  handleChange: PropTypes.func.isRequired,
+};
 export default Category;

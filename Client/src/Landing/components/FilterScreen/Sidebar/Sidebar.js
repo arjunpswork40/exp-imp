@@ -1,3 +1,6 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
 import Category from "./Category/Category";
 import Price from "./Price/Price";
 import Colors from "./Colors/Colors";
@@ -45,5 +48,9 @@ const Sidebar = ({ handleChange,handleInputChange, query }) => {
     </>
   );
 };
-
+Sidebar.propTypes = {
+  handleInputChange: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  query: PropTypes.func.isRequired,
+};
 export default Sidebar;

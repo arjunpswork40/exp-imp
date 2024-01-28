@@ -28,7 +28,13 @@ const _nav = [
   },
   {
     component: CNavTitle,
-    name: 'Theme',
+    name: 'Proceduers',
+  },
+  {
+    component: CNavItem,
+    name: 'Courses',
+    to: '/admin/courses/continents',
+    icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,

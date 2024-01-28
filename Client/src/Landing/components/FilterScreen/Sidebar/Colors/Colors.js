@@ -1,3 +1,5 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import "./Colors.css";
 import Input from "../../../Generals/Input";
 
@@ -60,6 +62,10 @@ const Colors = ({ handleChange }) => {
       </div>
     </>
   );
+};
+
+Colors.propTypes = {
+  handleChange: PropTypes.func.isRequired,
 };
 
 export default Colors;

@@ -2,7 +2,16 @@ import React from 'react'
 
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
+const Continents  = React.lazy(() => import('./views/courses/continents/ContinentsList'))
+const Asia  = React.lazy(() => import('./views/courses/continents/Asia'))
+const Africa  = React.lazy(() => import('./views/courses/continents/Africa'))
+const Australia  = React.lazy(() => import('./views/courses/continents/Australia'))
+const Europe  = React.lazy(() => import('./views/courses/continents/Europe'))
+const NorthAmerica  = React.lazy(() => import('./views/courses/continents/NorthAmerica'))
+const SouthAmerica  = React.lazy(() => import('./views/courses/continents//SouthAmerica'))
+
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
+const AdminLogin = React.lazy(() => import('./views/pages/Admin/login/Login'))
 
 // Base
 const Accordion = React.lazy(() => import('./views/base/accordion/Accordion'))
@@ -55,6 +64,14 @@ const routes = [
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
   { path: '/theme', name: 'Theme', element: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', element: Colors },
+  { path: '/courses/continents', name: 'Continents', element: Continents },
+  { path: '/courses/continents/Asia', name: 'Asia', element: Asia },
+  { path: '/courses/continents/Africa', name: 'Africa', element: Africa },
+  { path: '/courses/continents/Australia', name: 'Australia', element: Australia },
+  { path: '/courses/continents/Europe', name: 'Europe', element: Europe },
+  { path: '/courses/continents/NorthAmerica', name: 'NorthAmerica', element: NorthAmerica },
+  { path: '/courses/continents/SouthAmerica', name: 'SouthAmerica', element: SouthAmerica },
+
   { path: '/theme/typography', name: 'Typography', element: Typography },
   { path: '/base', name: 'Base', element: Cards, exact: true },
   { path: '/base/accordion', name: 'Accordion', element: Accordion },
@@ -95,6 +112,7 @@ const routes = [
   { path: '/notifications/modals', name: 'Modals', element: Modals },
   { path: '/notifications/toasts', name: 'Toasts', element: Toasts },
   { path: '/widgets', name: 'Widgets', element: Widgets },
+  { path: '/login', name: 'AdminLogin', element: AdminLogin },
 ]
 
 export default routes

@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState, useEffect} from 'react'
+import { Navigate,useNavigate } from 'react-router-dom';
 import classNames from 'classnames'
 
 import {
@@ -54,7 +55,42 @@ import WidgetsBrand from '../widgets/WidgetsBrand'
 import WidgetsDropdown from '../widgets/WidgetsDropdown'
 import MainChart from './MainChart'
 
+import DashboardController from '../../controllers/Admin/Dashboard/DashboardController'
+import AuthService from '../../services/Admin/Auth/AuthServices'
+
 const Dashboard = () => {
+
+  const [data, setData] = useState(null);
+  const navigate = useNavigate();
+
+  const fetchData = async() => {
+    const token = AuthService.getAccessToken();
+    let response = [];
+    try{
+
+      response = await DashboardController.fetchDashboardData(token);
+      console.log('response==>',response)
+      localStorage.setItem('tokenStatus', response.data.tokenStatus);
+      setData(response.data);
+    } catch (error) {
+      if (error.response) {
+        console.log('Error Response:', error.response.data);
+        console.log('Status Code:', error.response.status);
+        navigate('/admin/login', { replace: true });
+      } else if (error.request) {
+        console.log('No response received:', error.request);
+      } else {
+        navigate('/admin/login', { replace: true });
+        console.log('Error:', error.message);
+      }
+    }
+
+  }
+
+  useEffect(()=>{
+    fetchData();
+  },[]);
+
   const progressExample = [
     { title: 'Visits', value: '29.703 Users', percent: 40, color: 'success' },
     { title: 'Unique', value: '24.093 Users', percent: 20, color: 'info' },
@@ -175,7 +211,6 @@ const Dashboard = () => {
       activity: 'Last week',
     },
   ]
-  console.log('fffff')
 
 
   return (

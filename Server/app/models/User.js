@@ -5,6 +5,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: false
   },
+  mobileNumber: {
+    type: String,
+    required: false
+  },
   email: {
     type: String,
     required: false,
@@ -22,13 +26,13 @@ const userSchema = new mongoose.Schema({
   resetPasswordToken: {
     type: String,
     required: false,
-    unique: true,
+    // unique: true,
   },
   resetPasswordExpires: {
     type: Date,
     default: null,
     required: false,
-    unique: false
+    // unique: false
   },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },

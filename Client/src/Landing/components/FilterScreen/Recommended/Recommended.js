@@ -1,5 +1,7 @@
-import Button from "../../Generals/Button";
-import "./Recommended.css";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Button from '../../Generals/Button';
+import './Recommended.css';
 
 const Recommended = ({ handleClick }) => {
   return (
@@ -16,6 +18,10 @@ const Recommended = ({ handleClick }) => {
       </div>
     </>
   );
+};
+
+Recommended.propTypes = {
+  handleClick: PropTypes.func.isRequired,
 };
 
 export default Recommended;

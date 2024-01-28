@@ -1,5 +1,6 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import "./Product.css";
-import Card from "../../Generals/Card";
 
 const Products = ({ result }) => {
   return (
@@ -7,10 +8,14 @@ const Products = ({ result }) => {
       {/* <section className="card-container"><div class="card-row">{result}</div></section> */}
       <section className="card-container">
         {result}
-        </section>
-
+      </section>
     </>
   );
+};
+
+// Add prop types validation
+Products.propTypes = {
+  result: PropTypes.array.isRequired, // Assuming 'result' is an array
 };
 
 export default Products;

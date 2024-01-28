@@ -1,3 +1,6 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
 import "./Search.css";
 
 function Search({ handleInputChange, query }) {
@@ -13,5 +16,8 @@ function Search({ handleInputChange, query }) {
     </div>
   );
 }
-
+Search.propTypes = {
+  handleInputChange: PropTypes.func.isRequired,
+  query: PropTypes.func.isRequired,
+};
 export default Search;

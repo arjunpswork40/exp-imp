@@ -2,6 +2,17 @@ const bcrypt = require('bcrypt');
 require('dotenv').config();
 const { makeJsonResponse } = require('./response');
 
+const generateRandomString = async(length) => {
+    const charset = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let randomString = '';
+    
+    for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * charset.length);
+        randomString += charset[randomIndex];
+    }
+    
+    return randomString;
+}
 module.exports = {
     hashPassword: async (password) => {
 
@@ -39,5 +50,14 @@ module.exports = {
 
 
 
-    }
+    },
+    createStorableToken: async(token) => {
+        const startString = await generateRandomString(12)
+        const endString = await generateRandomString(34)
+
+        const modifiedToken = startString+token+endString
+        return modifiedToken;
+
+    },
+    
 }

@@ -1,3 +1,6 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
 import { BsFillBagFill } from "react-icons/bs";
 
 const Card = ({ img, title, star, reviews, prevPrice, newPrice }) => {
@@ -24,5 +27,13 @@ const Card = ({ img, title, star, reviews, prevPrice, newPrice }) => {
     </>
   );
 };
+Card.propTypes = {
+  img: PropTypes.func.isRequired,
+  title: PropTypes.func.isRequired,
+  star: PropTypes.func.isRequired,
+  reviews: PropTypes.func.isRequired,
+  prevPrice: PropTypes.func.isRequired,
+  newPrice: PropTypes.func.isRequired,
 
+};
 export default Card;
