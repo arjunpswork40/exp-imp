@@ -15,7 +15,7 @@ function Home() {
       <Hero />
       <Slider />
       <Virtual />
-      <Products />
+      {/* <Products /> */}
       <Testimonials />
       <Footer />
     </div>

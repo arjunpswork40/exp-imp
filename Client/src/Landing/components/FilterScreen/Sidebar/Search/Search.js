@@ -18,6 +18,6 @@ function Search({ handleInputChange, query }) {
 }
 Search.propTypes = {
   handleInputChange: PropTypes.func.isRequired,
-  query: PropTypes.func.isRequired,
+  query: PropTypes.string.isRequired,
 };
 export default Search;

@@ -9,6 +9,12 @@ const Australia  = React.lazy(() => import('./views/courses/continents/Australia
 const Europe  = React.lazy(() => import('./views/courses/continents/Europe'))
 const NorthAmerica  = React.lazy(() => import('./views/courses/continents/NorthAmerica'))
 const SouthAmerica  = React.lazy(() => import('./views/courses/continents//SouthAmerica'))
+const EducationalInstitutes  = React.lazy(() => import('./views/courses/details/EducationaInstitutesList'))
+const InstituteDetails  = React.lazy(() => import('./views/courses/details/InstituteDetails'))
+const StoreInstitute  = React.lazy(() => import('./views/courses/details/storeInstitute'))
+const Enquery = React.lazy(() => import('./views/enquery/Enquery'))
+const EnqueryContinentList = React.lazy(() => import('./views/enquery/ContinentList.js'))
+const EnqueryDetails= React.lazy(() => import('./views/enquery/EnqueryDetails.js'))
 
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
 const AdminLogin = React.lazy(() => import('./views/pages/Admin/login/Login'))
@@ -59,6 +65,11 @@ const Toasts = React.lazy(() => import('./views/notifications/toasts/Toasts'))
 
 const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
+
+// Landing
+const ListInstitutes  = React.lazy(() => import('./Landing/components/Products/Products.jsx'))
+
+
 const routes = [
   // { path: '/admin/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
@@ -71,6 +82,14 @@ const routes = [
   { path: '/courses/continents/Europe', name: 'Europe', element: Europe },
   { path: '/courses/continents/NorthAmerica', name: 'NorthAmerica', element: NorthAmerica },
   { path: '/courses/continents/SouthAmerica', name: 'SouthAmerica', element: SouthAmerica },
+  { path: '/courses/continents/educational-institutes', name: 'EducationalInstitutes', element: EducationalInstitutes },
+  { path: '/courses/continents/educational-institutes/details', name: 'InstituteDetails', element: InstituteDetails },
+  { path: '/courses/continents/educational-institutes/store', name: 'StoreInstitute', element: StoreInstitute },
+  { path: '/enquery/list', name: 'Enquery', element: Enquery },
+  { path: '/enquery', name: 'EnqueryContinentList', element: EnqueryContinentList },
+  { path: '/enquery/details', name: 'EnqueryDetails', element: EnqueryDetails },
+
+
 
   { path: '/theme/typography', name: 'Typography', element: Typography },
   { path: '/base', name: 'Base', element: Cards, exact: true },
@@ -113,6 +132,9 @@ const routes = [
   { path: '/notifications/toasts', name: 'Toasts', element: Toasts },
   { path: '/widgets', name: 'Widgets', element: Widgets },
   { path: '/login', name: 'AdminLogin', element: AdminLogin },
+
+  { path: '/educational-institutes', name: 'ListInstitutes', element: ListInstitutes },
+
 ]
 
 export default routes

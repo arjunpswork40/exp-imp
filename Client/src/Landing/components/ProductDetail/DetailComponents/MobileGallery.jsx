@@ -1,5 +1,5 @@
 import { IconButton } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import prod1 from "../Pictures/image-product-1.jpg";
 import prod2 from "../Pictures/image-product-2.jpg";
@@ -7,18 +7,33 @@ import prod3 from "../Pictures/image-product-3.jpg";
 import prod4 from "../Pictures/image-product-4.jpg";
 import NextIcon from "./Icons/NextIcon";
 import PreviousIcon from "./Icons/PreviousIcon";
+import PropTypes from 'prop-types';
 
-const IMAGES = [prod1, prod2, prod3, prod4];
 
-const MobileGallery = () => {
-  const [currentMobileImage, setCurrentMobileImage] = useState(prod1);
+const MobileGallery = ({institutrDetails}) => {
+  console.log(institutrDetails.titleImage,'<=institutrDetails.titleImage')
+  const IMAGES = [institutrDetails.titleImage,...(institutrDetails.relatedImages || []),...(institutrDetails.relatedVideos || [])]
+
+  const [currentMobileImage, setCurrentMobileImage] = useState(institutrDetails.titleImage);
   const [mobileImageIndex, setMobileImageIndex] = useState(1);
+  const [tagStatus, setTagStatus]=useState(false)
+
+  const getCurrentImageStatus = (imageURL) => {
+    const extension = imageURL ? imageURL.split('.').pop().toLowerCase() : 'jpg';
+    const videoExtensions = ['mp4', 'webm', 'ogg'];
+    const tagStatus = videoExtensions.includes(extension)
+    return tagStatus
+  }
 
   const handleIncrement = () => {
     if (mobileImageIndex === IMAGES.length - 1) {
+      const tagStatus = getCurrentImageStatus(IMAGES[0])
+      setTagStatus(tagStatus);
       setCurrentMobileImage(IMAGES[0]);
       setMobileImageIndex(0);
     } else {
+      const tagStatus = getCurrentImageStatus(IMAGES[mobileImageIndex + 1])
+      setTagStatus(tagStatus);
       setCurrentMobileImage(IMAGES[mobileImageIndex + 1]);
       setMobileImageIndex(mobileImageIndex + 1);
     }
@@ -26,13 +41,21 @@ const MobileGallery = () => {
 
   const handleDecrement = () => {
     if (mobileImageIndex === 0) {
+      const tagStatus = getCurrentImageStatus(IMAGES[IMAGES.length - 1])
+      setTagStatus(tagStatus);
       setCurrentMobileImage(IMAGES[IMAGES.length - 1]);
       setMobileImageIndex(IMAGES.length - 1);
     } else {
+      const tagStatus = getCurrentImageStatus(IMAGES[mobileImageIndex - 1])
+      setTagStatus(tagStatus);
       setCurrentMobileImage(IMAGES[mobileImageIndex - 1]);
       setMobileImageIndex(mobileImageIndex - 1);
     }
   };
+
+  useEffect(() => {
+    setCurrentMobileImage(institutrDetails.titleImage);
+  }, [institutrDetails.titleImage]);
 
   return (
     <section className="mobile-gallery hide-in-desktop">
@@ -48,7 +71,14 @@ const MobileGallery = () => {
       >
         <PreviousIcon />
       </IconButton>
-      <img src={currentMobileImage} alt="featured-product" />
+      { tagStatus ? (
+        <video width='300' height='300'  controls={true} style={{cursor:'pointer'}}>
+              <source src={currentMobileImage} type={`video/${currentMobileImage.split('.').pop().toLowerCase()}`} />
+              Your browser does not support the video tag.
+            </video>
+      ) : (
+        <img src={currentMobileImage} alt="featured-product" />
+      )}
       <IconButton
         className="icon-button-next"
         disableRipple
@@ -64,5 +94,13 @@ const MobileGallery = () => {
     </section>
   );
 };
+
+MobileGallery.propTypes = {
+  institutrDetails: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object
+  ]).isRequired,
+
+}
 
 export default MobileGallery;

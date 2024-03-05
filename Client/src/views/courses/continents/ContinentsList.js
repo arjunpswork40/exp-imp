@@ -57,7 +57,7 @@ const Cards = () => {
                     <CCardText>
                     Africa is the world&apos;s second-largest and second-most populous continent, after Asia in both aspects
                     </CCardText>
-                    <CButton color="primary" href="#">
+                    <CButton color="primary" href="/admin/courses/continents/Africa">
                       Explore
                     </CButton>
                   </CCardBody>
@@ -71,7 +71,7 @@ const Cards = () => {
                     <CCardText>
                       Europe is a continent comprising the westernmost peninsulas of Eurasia.
                     </CCardText>
-                    <CButton color="primary" href="#">
+                    <CButton color="primary" href="/admin/courses/continents/Europe">
                       Explore
                     </CButton>
                   </CCardBody>
@@ -85,7 +85,7 @@ const Cards = () => {
                     <CCardText>
                       North America covers an area of about 24,709,000 square kilometers (9,540,000 square miles)
                     </CCardText>
-                    <CButton color="primary" href="#">
+                    <CButton color="primary" href="/admin/courses/continents/NorthAmerica">
                       Explore
                     </CButton>
                   </CCardBody>
@@ -99,13 +99,13 @@ const Cards = () => {
                     <CCardText>
                       South America is a continent entirely in the Western Hemisphere and mostly in the Southern Hemisphere.
                     </CCardText>
-                    <CButton color="primary" href="#">
+                    <CButton color="primary" href="/admin/courses/continents/SouthAmerica">
                       Explore
                     </CButton>
                   </CCardBody>
                 </CCard>
               </CCol>
-              <CCol xs={4}>
+              {/* <CCol xs={4}>
                 <CCard style={{ width: '18rem', marginTop:'30px' }}>
                   <CCardImage orientation="top" src={Antarctica} style={{width:'200px', height:'200px', position:'relative', left:'15%', marginTop:'10px'}} />
                   <CCardBody>
@@ -118,7 +118,7 @@ const Cards = () => {
                     </CButton>
                   </CCardBody>
                 </CCard>
-              </CCol>
+              </CCol> */}
               <CCol xs={4}>
                 <CCard style={{ width: '18rem', marginTop:'30px' }}>
                   <CCardImage orientation="top" src={Australia} style={{width:'200px', height:'200px', position:'relative', left:'15%', marginTop:'10px'}} />
@@ -127,7 +127,7 @@ const Cards = () => {
                     <CCardText>
                       Australia, officially the Commonwealth of Australia, is a sovereign country.
                     </CCardText>
-                    <CButton color="primary" href="#">
+                    <CButton color="primary" href="/admin/courses/continents/Australia">
                       Explore
                     </CButton>
                   </CCardBody>

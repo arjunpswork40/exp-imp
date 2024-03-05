@@ -1,6 +1,8 @@
 import React from "react";
 import plus from "../Pictures/icon-plus.svg";
 import minus from "../Pictures/icon-minus.svg";
+import PropTypes from 'prop-types';
+
 
 const QuantityButton = ({ onQuant, onRemove, onAdd }) => {
   return (
@@ -15,5 +17,11 @@ const QuantityButton = ({ onQuant, onRemove, onAdd }) => {
     </div>
   );
 };
+
+QuantityButton.propTypes = {
+  onQuant: PropTypes.func.isRequired,
+  onRemove: PropTypes.func.isRequired,
+  onAdd: PropTypes.func.isRequired,
+}
 
 export default QuantityButton;

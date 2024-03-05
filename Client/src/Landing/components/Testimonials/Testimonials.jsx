@@ -12,7 +12,7 @@ const Testimonials = () => {
             <div className={css.wrapper}>
                 <div className={css.container}>
                     <span>Top rated</span>
-                    <span>Empowering global trade: Seamlessly connect, import, export, thrive everywhere.
+                    <span>Unleash your potential in our vibrant AI community, fostering innovation and collaboration.
                     </span>
                 </div>
                 <img

@@ -74,7 +74,7 @@
 // export default Filter
 
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Products from './Products/Products'
 import Recommended from './Recommended/Recommended'
 import css from "./Filter.module.css"
@@ -84,9 +84,20 @@ import Sidebar from './Sidebar/Sidebar'
 import products from '../../db/db'
 import Card from '../Generals/Card'
 import Footer from '../Footer/Footer'
+import LandingController from '../../../controllers/Landing/LandingController'
+import { useNavigate } from 'react-router-dom';
 
 export default function Filter() {
   const [selectedCategory, setSelectedCategory] = useState(null);
+
+  // const handleDetailsCreatClick = async(institueId) => {
+  //   navigate('/educational-institutes-details', { state: { institueId: institueId, continent: styleDetails.value } });
+  // }
+  const handleDetailsCreatClick = async (instituteId) => {
+    navigate(`/educational-institutes-details/${styleDetails.value}/${instituteId}`);
+  };
+
+  const navigate = useNavigate();
 
   // ----------- Input Filter -----------
   const [query, setQuery] = useState("");
@@ -95,65 +106,178 @@ export default function Filter() {
     setQuery(event.target.value);
   };
 
-  const filteredItems = products.filter(
-    (product) => product.title.toLowerCase().indexOf(query.toLowerCase()) !== -1
-  );
+  const [instituteByCountry, setInstituteByCountry] = useState([]);
 
   // ----------- Radio Filtering -----------
-  const handleChange = (event) => {
+  const [selectedCountryIds,setSelectedCountryIds] = useState([]);
+  const handleChange = async (event) => {
+
+
+
+    console.log('event.target.value=>',event.target.value)
+
+    let countryIds = selectedCountryIds.length > 0  ? selectedCountryIds : (event.target.checked) ? selectedCountryIds.push('all') : []
+    console.log(selectedCountryIds,countryIds,event.target.checked)
+    let postData = {
+      countryIds:selectedCountryIds,
+      continent:sidebarData?.continent??'Asia'
+    }
+
+    if(event.target.checked) {
+
+      if(!selectedCountryIds.includes(event.target.value)) {
+        selectedCountryIds.push(event.target.value);
+        postData.countryIds = selectedCountryIds
+        setSelectedCountryIds(selectedCountryIds)
+      }
+    } else {
+      const newIdArray = selectedCountryIds.filter(entry => entry != event.target.value);
+      postData.countryIds = newIdArray
+
+      setSelectedCountryIds(newIdArray)
+    }
+
+    if(event.target.value === 'all') {
+      let updatedStyleDetails = styleDetails;
+      if(event.target.checked){
+        updatedStyleDetails.countryIds.push('all');
+        setStyleDetails(updatedStyleDetails)
+      }
+    }
+
+    try{
+      let result = await LandingController.fetchInstituteDetailsByCountryIdAndContinent(postData)
+
+      if(result.success){
+        let instituteData = [];
+        if(result.data.length > 0) {
+          instituteData = result.data.map((item,index)=> {
+            return <a href='#' onClick={() => handleDetailsCreatClick(item._id)}  className="card-link" key={index}><Card
+                  key={index}
+                  img={item.titleImage ?? 'http://localhost:4000/public/assets/images/ang-blue1.png'}
+                  title={item.name}
+                  shortName={item.shortName}
+                  state={item.state}
+                  prevPrice='0'
+                  newPrice='0'
+                /></a>
+          })
+        }
+        setInstituteByCountry(instituteData)
+      }
+    } catch(error){
+
+    }
     setSelectedCategory(event.target.value);
   };
 
-  // ------------ Button Filtering -----------
-  const handleClick = (event) => {
-    setSelectedCategory(event.target.value);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        let postData = {
+          continent: 'Asia',
+          countryIds: 'all'
+        };
+
+        const data = await LandingController.fetchCountryList('Africa');
+        if (data.success) {
+          let sideBarDetails = {
+            data: data,
+            continent: 'Africa'
+          };
+          // Update Sidebar component with the response data
+          setSidebarData(sideBarDetails);
+        }
+
+        let result = await LandingController.fetchInstituteDetailsByCountryIdAndContinent(postData);
+        if (result.success) {
+          let instituteData = [];
+          if (result.data.length > 0) {
+            instituteData = result.data.map((item, index) => (
+              <a href='#' onClick={() => handleDetailsCreatClick(item._id)} className="card-link" key={index}>
+                <Card
+                  key={index}
+                  img={item.titleImage ?? 'http://localhost:4000/public/assets/images/ang-blue1.png'}
+                  title={item.name}
+                  shortName={item.shortName}
+                  state={item.state}
+                  prevPrice='0'
+                  newPrice='0'
+                />
+              </a>
+            ));
+          }
+          setInstituteByCountry(instituteData);
+        }
+      } catch (error) {
+        // Handle errors appropriately
+      }
+    };
+
+    fetchData();
+  }, []);
+
+
+
+  const [sidebarData, setSidebarData] = useState(null);
+  const handleButtonClickT = async (continent) => {
+    let updatedStyleDetails = styleDetails;
+    updatedStyleDetails.value=continent
+    setStyleDetails(updatedStyleDetails)
+    console.log('Button clicked:', continent);
+
+    try {
+      const data = await LandingController.fetchCountryList(continent);
+      if(data.success){
+        let sideBarDetails = {
+          data:data,
+          continent:continent
+        }
+        // Update Sidebar component with the response data
+        setSidebarData(sideBarDetails);
+      }
+
+      let postData = {
+        continent: continent,
+        countryIds: 'all'
+      }
+
+      let result = await LandingController.fetchInstituteDetailsByCountryIdAndContinent(postData);
+      if(result.success){
+        let instituteData = [];
+        if(result.data.length > 0) {
+          instituteData = result.data.map((item,index)=> {
+            return <a href='#' className="card-link" onClick={() => handleDetailsCreatClick(item._id)} key={index}><Card
+                  key={index}
+                  img={item.titleImage ?? 'http://localhost:4000/public/assets/images/ang-blue1.png'}
+                  title={item.name}
+                  shortName={item.shortName}
+                  state={item.state}
+                  prevPrice='0'
+                  newPrice='0'
+                /></a>
+          })
+        }
+        setInstituteByCountry(instituteData)
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
   };
 
-  function filteredData(products, selected, query) {
-    let filteredProducts = products;
+  const [ styleDetails, setStyleDetails] = useState({
+    value:'Asia',style: {color:'black', backgroundColor:'white'},countryIds:['all']
+  })
 
-    // Filtering Input Items
-    if (query) {
-      filteredProducts = filteredItems;
-    }
-
-    // Applying selected filter
-    if (selected) {
-      filteredProducts = filteredProducts.filter(
-        ({ category, color, company, newPrice, title }) =>
-          category === selected ||
-          color === selected ||
-          company === selected ||
-          newPrice === selected ||
-          title === selected
-      );
-    }
-
-    return filteredProducts.map(
-      ({ img, title, star, reviews, prevPrice, newPrice }) => (
-        <a href={`product-detail/${Math.random()}`} className="card-link" key={Math.random()}><Card
-          key={Math.random()}
-          img={img}
-          title={title}
-          star={star}
-          reviews={reviews}
-          prevPrice={prevPrice}
-          newPrice={newPrice}
-        /></a>
-      )
-    );
-  }
-
-  const result = filteredData(products, selectedCategory, query);
 
   return (
     <>
     <Header/>
     <div className={css.mainFilter}>
-        <Sidebar handleChange={handleChange} query={query} handleInputChange={handleInputChange} />
+        <Sidebar styleDetails={styleDetails} handleChange={handleChange} data={sidebarData} query={query} handleInputChange={handleInputChange} />
         {/* <Navigation query={query} handleInputChange={handleInputChange} /> */}
-        <Recommended handleClick={handleClick} />
-        <Products result={result} />
+        <Recommended styleDetails={styleDetails} onButtonClick={handleButtonClickT} />
+        <Products result={instituteByCountry} handleDetailsCreatClick={handleDetailsCreatClick}/>
     </div>
     <Footer />
     </>

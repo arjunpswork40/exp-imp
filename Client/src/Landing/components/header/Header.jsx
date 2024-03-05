@@ -61,7 +61,7 @@ const Header = () => {
       <div className={css.logo}>
         <a href="/" className={css.logoNav}>
           <img src={Logo} alt="" />
-          <span className={` ${scrolled ? css.scrolled : ''}`}>amazon</span>
+          <span className={` ${scrolled ? css.scrolled : ''}`}>TrustOwn</span>
         </a>
       </div>
       <div className={` ${css.right} ${menuStyle}`}>
@@ -70,17 +70,17 @@ const Header = () => {
         </div>
         <ul className={css.menu} style={{ display: ShowMenu ? 'inherit' : 'none' }}>
           <li>
-            <a href="/import-export-products">Import/Export</a>
+            <a href="/educational-institutes">Institutes</a>
           </li>
-          <li>Factory Sale</li>
+          {/* <li>Factory Sale</li> */}
           <li>AboutUs</li>
-          <li>Register</li>
-          <li>
+          {/* <li>Register</li> */}
+          {/* <li>
             <a href="/authenticate" className="btn btn-secondary">
               Login
             </a>
           </li>
-          <li>ENG</li>
+          <li>ENG</li> */}
         </ul>
         {/* <input type="text" className={css.search} placeholder='Search' /> */}
         {/* <CgShoppingBag className={css.cart}/> */}

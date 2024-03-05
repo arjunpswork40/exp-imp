@@ -17,7 +17,7 @@ const Footer = () => {
             <div className={css.cFooter}>
                 <div className={css.logo}>
                     <img src={Logo} alt="" />
-                    <span>amazon</span>
+                    <span>TrustOwn</span>
                 </div>
 
                 <div className={css.block}>

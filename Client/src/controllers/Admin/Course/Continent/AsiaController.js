@@ -9,6 +9,14 @@ const AsiaController = {
       throw error;
     }
   },
+  fetchInstituteDetailsByCountry: async(token,contineny,countryId) => {
+    try {
+      const response = await AsiaService.instituteListByCountry(token,contineny,countryId);
+      return response;
+    } catch(error) {
+      throw error
+    }
+  }
 };
 
 export default AsiaController;

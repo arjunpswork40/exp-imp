@@ -49,7 +49,7 @@ const Slider = () => {
                                 <span> {slide.detail} </span>
                             </div>
                             <span> {slide.price} $</span>
-                            <div>Shop Now</div>
+                            <div>Explore AI</div>
                         </motion.div>
                         <img src={slide.img} alt="product" className='img-p' />
                     </SwiperSlide>
@@ -58,14 +58,14 @@ const Slider = () => {
                         <div
                             className="left-s">
                             <div className="name">
-                                <span> Africa </span>
+                                <span style={{color:'green'}}> Africa </span>
                                 <span> Africa is the world&apos;s second-largest and second-most populous continent, after Asia in both aspects </span>
                             </div>
                             <div
                                  className="bottom-content">
-                                <span> Vast </span>
+                                <span style={{color:'green'}}> Vast </span>
                                 <div
-                               >Shop Now</div>
+                               >Explore AI</div>
                             </div>
                         </div>
                         <img src={Africa} alt="product" className='img-p' />
@@ -74,14 +74,14 @@ const Slider = () => {
                         <div
                             className="left-s">
                             <div className="name">
-                                <span> Asia </span>
+                                <span style={{color:'#b04535'}}> Asia </span>
                                 <span> Asia is the largest continent in the world by both land area and population. </span>
                             </div>
                             <div
                                  className="bottom-content">
-                                <span> Diverse</span>
+                                <span  style={{color:'#b04535'}}> Diverse</span>
                                 <div
-                                >Shop Now</div>
+                                >Explore AI</div>
                             </div>
                         </div>
                         <img src={Asia} alt="product" className='img-p' />
@@ -90,14 +90,14 @@ const Slider = () => {
                         <div
                             className="left-s">
                             <div className="name">
-                                <span> Europe </span>
+                                <span style={{color:'#2fc0ff'}}> Europe </span>
                                 <span> Europe is a continent comprising the westernmost peninsulas of Eurasia. </span>
                             </div>
                             <div
                                  className="bottom-content">
-                                <span> Cultural </span>
+                                <span style={{color:'#2fc0ff'}}> Cultural </span>
                                 <div
-                               >Shop Now</div>
+                               >Explore AI</div>
                             </div>
                         </div>
                         <img src={Europe} alt="product" className='img-p' />
@@ -106,14 +106,14 @@ const Slider = () => {
                         <div
                             className="left-s">
                             <div className="name">
-                                <span> North America </span>
+                                <span style={{color:'#1d222b'}}> North America </span>
                                 <span> North America covers an area of about 24,709,000 square kilometers (9,540,000 square miles) </span>
                             </div>
                             <div
                                  className="bottom-content">
-                                <span> Expansive</span>
+                                <span style={{color:'#1d222b'}}> Expansive</span>
                                 <div
-                                >Shop Now</div>
+                                >Explore AI</div>
                             </div>
                         </div>
                         <img src={NorthAmerica} alt="product" className='img-p' />
@@ -122,14 +122,14 @@ const Slider = () => {
                         <div
                             className="left-s">
                             <div className="name">
-                                <span> South America </span>
+                                <span style={{color:'#db10e0'}}> South America </span>
                                 <span> South America is a continent entirely in the Western Hemisphere and mostly in the Southern Hemisphere. </span>
                             </div>
                             <div
                                  className="bottom-content">
-                                <span> Lively </span>
+                                <span style={{color:'#db10e0'}}> Lively </span>
                                 <div
-                               >Shop Now</div>
+                               >Explore AI</div>
                             </div>
                         </div>
                         <img src={SouthAmerica} alt="product" className='img-p' />
@@ -138,14 +138,14 @@ const Slider = () => {
                         <div
                             className="left-s">
                             <div className="name">
-                                <span> Antarctica </span>
+                                <span style={{color:'#288c22'}}> Antarctica </span>
                                 <span> Antarctica is Earth&apos;s southernmost and least-populated continent. </span>
                             </div>
                             <div
                                  className="bottom-content">
-                                <span> Frozen </span>
+                                <span style={{color:'#288c22'}}> Frozen </span>
                                 <div
-                               >Shop Now</div>
+                               >Explore AI</div>
                             </div>
                         </div>
                         <img src={Antarctica} alt="product" className='img-p' />
@@ -154,14 +154,14 @@ const Slider = () => {
                         <div
                             className="left-s">
                             <div className="name">
-                                <span> Australia </span>
+                                <span style={{color:'#0035ff'}}> Australia </span>
                                 <span> Australia, officially the Commonwealth of Australia, is a sovereign country. </span>
                             </div>
                             <div
                                  className="bottom-content">
-                                <span> Unique </span>
+                                <span style={{color:'#0035ff'}}> Unique </span>
                                 <div
-                              >Shop Now</div>
+                              >Explore AI</div>
                             </div>
                         </div>
                         <img src={Australia} alt="product" className='img-p' />

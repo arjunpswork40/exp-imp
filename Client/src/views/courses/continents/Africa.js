@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState, useEffect} from 'react'
+import { useNavigate } from 'react-router-dom';
 import {
   CButton,
   CCard,
@@ -10,17 +11,54 @@ import {
   CCol,
   CRow,
 } from '@coreui/react'
-import Africa from "../../../Landing/assets/africa.png"
-import Asia from "../../../Landing/assets/asia.png"
-import Australia from "../../../Landing/assets/Australia.png"
-import SouthAmerica from "../../../Landing/assets/South_America.png"
-import Antarctica from "../../../Landing/assets/Antarctica.png"
-import Europe from "../../../Landing/assets/europe.png"
-import NorthAmerica from "../../../Landing/assets/North_America.png"
+import AuthService from '../../../services/Admin/Auth/AuthServices'
+import AfricaController from '../../../controllers/Admin/Course/Continent/AfricaController';
 
-import ReactImg from '../../../../src/assets/images/react.jpg'
 
 const Cards = () => {
+  const [data,setData] = useState([])
+  const navigate = useNavigate();
+  const token = AuthService.getAccessToken();
+
+  const fetchData = async () => {
+    let response = [];
+    try{
+
+      response = await AfricaController.fetchCountryList(token);
+      console.log('response==>',response.data)
+      localStorage.setItem('tokenStatus', response.data.tokenStatus);
+      setData(response.data);
+    } catch (error) {
+      if (error.response) {
+        console.log('Error Response:', error.response.data);
+        console.log('Status Code:', error.response.status);
+        navigate('/admin/login', { replace: true });
+      } else if (error.request) {
+        console.log('No response received:', error.request);
+      } else {
+        navigate('/admin/login', { replace: true });
+        console.log('Error:', error.message);
+      }
+    }
+  }
+
+  useEffect(() => {
+    fetchData()
+  },[]);
+
+
+  const handleDetailsClick = async(countryId) => {
+    let response = [];
+    try{
+      response = await AfricaController.fetchInstituteDetailsByCountry(token,'Africa',countryId)
+      console.log('from Africa =>',{continent: 'Africa', countryId: countryId})
+      navigate('/admin/courses/continents/educational-institutes', { state: { institueData: response.data, continent: 'Africa', countryId: countryId } });
+
+    } catch(error) {
+      console.log('error on institute list fetch =-> ', error)
+    }
+  }
+
   return (
     <CRow>
       <CCol xs={12}>
@@ -30,27 +68,30 @@ const Cards = () => {
           </CCardHeader>
           <CCardBody>
             <p className="text-body-secondary small">
-              Listed all countries under Asia.
+              Listed all countries under Africa.
             </p>
 
             {/* <DocsExample href="components/card"> */}
             <CRow>
-              <CCol xs={4}>
-                <CCard style={{ width: '18rem', marginTop:'10px' }}>
-                  <CCardImage orientation="top" src={Asia} style={{width:'200px', height:'200px', position:'relative', left:'15%', marginTop:'10px'}} />
-                  <CCardBody>
-                    <CCardTitle>Asia</CCardTitle>
-                    <CCardText>
-                    Asia is the largest continent in the world by both land area and population.
-                    </CCardText>
-                    <CButton color="primary" href="#">
-                      Explore
-                    </CButton>
-                  </CCardBody>
-                </CCard>
-              </CCol>
-
-              </CRow>
+              {data.map((country,index) => (
+                 <CCol key={index} xs={4}>
+                 <CCard style={{ width: '18rem', marginTop:'10px' }}>
+                   <CCardImage orientation="top" src={country.imagePath} style={{height:'150px'}} />
+                   <CCardBody>
+                     <CCardTitle>{country.name}</CCardTitle>
+                     <CCardText>
+                     Asia is the largest continent in the world by both land area and population.
+                     </CCardText>
+                     <CButton color="primary"
+                        onClick={() => handleDetailsClick(country._id)}
+                      >
+                       Details
+                     </CButton>
+                   </CCardBody>
+                 </CCard>
+               </CCol>
+              ))}
+            </CRow>
             {/* </DocsExample> */}
           </CCardBody>
         </CCard>

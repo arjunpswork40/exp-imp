@@ -9,7 +9,6 @@ import './scss/style.scss';
 // Containers
 const DefaultLayout = React.lazy(() => import('./layout/DefaultLayout'));
 const LandingPage = React.lazy(() => import('./Landing/components/Home/Home'));
-const Filter = React.lazy(() => import('./Landing/components/FilterScreen/Filter'));
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 
 // Pages
@@ -17,6 +16,11 @@ const AdminLogin = React.lazy(() => import('./views/pages/Admin/login/Login'));
 const Register = React.lazy(() => import('./views/pages/register/Register'));
 const Page404 = React.lazy(() => import('./views/pages/page404/Page404'));
 const Page500 = React.lazy(() => import('./views/pages/page500/Page500'));
+
+// Frontend
+const Filter = React.lazy(() => import('./Landing/components/FilterScreen/Filter'));
+const InstitueDetails = React.lazy(() => import('./Landing/components/ProductDetail/ProductDetail'));
+
 
 const App = () => {
   const { isColorModeSet, setColorMode } = useColorModes('coreui-free-react-admin-template-theme');
@@ -56,7 +60,8 @@ const App = () => {
           {/* Redirect paths starting with "/admin/" to "/admin" */}
           <Route path="/admin/*" element={<DefaultLayout />} />
           {/* Catch-all redirect for any other unmatched paths */}
-          <Route path="/import-export-products" element={<Filter />} />
+          <Route path="/educational-institutes" element={<Filter />} />
+          <Route path="/educational-institutes-details/:continent/:instituteId" element={<InstitueDetails />} />
           <Route path="*" element={<Navigate to="/" />} />
 
         </Routes>

@@ -15,6 +15,18 @@ const AsiaService = {
       throw error.response ? error.response.data : error.message + '--' + error.name;
     }
   },
+  instituteListByCountry: async (token,continent,countryId) => {
+    try {
+      const response = await axios.get(`${API_BASE_URL}/admin/continents/${continent}/${countryId}/institute-list`, {
+        headers: {
+          Authorization: token
+        },
+      });
+      return response.data;
+    } catch (error) {
+      throw error.response ? error.response.data : error.message + '--' + error.name;
+    }
+  },
 };
 
 export default AsiaService;

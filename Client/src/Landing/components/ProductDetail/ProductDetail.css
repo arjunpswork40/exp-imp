@@ -27,6 +27,33 @@ button {
   background-color: unset;
 }
 
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Three equal-width columns */
+  gap: 16px; /* Adjust the gap between items as needed */
+}
+
+.grid-item {
+  border: 1px solid #ddd; /* Add borders or other styling to items */
+  padding: 16px; /* Add padding to items as needed */
+  text-align: center;
+}
+
+.custom-label{
+  color: red;
+}
+
+.grid-container-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Three equal-width columns */
+  gap: 16px; /* Adjust the gap between items as needed */
+}
+
+.grid-item-form {
+  padding: 16px; /* Add padding to items as needed */
+  text-align: center;
+}
+
 .activated {
   position: absolute;
   top: 0;
@@ -493,12 +520,16 @@ header nav .right .cart button.checkout:hover {
   display: flex;
   align-items: center;
   gap: 20px;
+  flex-wrap: wrap;
 }
-
+.contactForm{
+  margin-top: 100px;
+}
 .gallery .thumbnails .img-holder {
   position: relative;
   height: 90px;
   width: 90px;
+  flex: 1 0 21%;
 }
 @media (max-width: 992px) {
   .gallery .thumbnails .img-holder {

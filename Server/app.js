@@ -40,9 +40,13 @@ const userAuthRoutes = require('./routes/api/user/auth/userAuthRoutes')
 const basicConfig = require('./routes/admin/basicConfig/basicConfRoutes')
 const adminDashboardRoutes = require('./routes/api/admin/dashboardRoutes')
 const adminContinentRoutes = require('./routes/api/admin/continentsRoutes')
-
+const adminEnqueryRoutes = require('./routes/api/admin/enqueryRoutes')
 // General Routes
 const genralDetails = require("./routes/genaralRuotes")
+
+// FrontEnd
+
+const landingRoutes = require('./routes/api/landing/landingRouter')
 
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -117,6 +121,7 @@ app.use("/api/admin/dashboard",adminDashboardRoutes)
 app.use("/api/user",userAuthRoutes);
 app.use("/",basicConfig);
 app.use("/api/admin/continents",adminContinentRoutes)
+app.use("/api/admin/enquery",adminEnqueryRoutes)
 
 app.use('/country_flags', express.static(path.join(__dirname, 'public/assets/images/country_flags')));
 
@@ -125,7 +130,12 @@ app.use('/country_flags', express.static(path.join(__dirname, 'public/assets/ima
 
 app.use("/", genralDetails)
 
+// Frontend routes
+app.use('/api',landingRoutes)
+
 app.use(express.static('public'))
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
 

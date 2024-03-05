@@ -11,12 +11,12 @@ import {
   CCol,
   CRow,
 } from '@coreui/react'
-import Asia from "../../../assets/country_flags/Asia/Flag_of_Armenia.svg.png"
 import AuthService from '../../../services/Admin/Auth/AuthServices'
 import AsiaController from '../../../controllers/Admin/Course/Continent/AsiaController'
 const Cards = () => {
   const [data,setData] = useState([])
   const navigate = useNavigate();
+  const token = AuthService.getAccessToken();
 
   const fetchData = async () => {
     const token = AuthService.getAccessToken();
@@ -45,6 +45,17 @@ const Cards = () => {
     fetchData()
   },[]);
 
+  const handleDetailsClick = async(countryId) => {
+    let response = [];
+    try{
+      response = await AsiaController.fetchInstituteDetailsByCountry(token,'Asia',countryId)
+      navigate('/admin/courses/continents/educational-institutes', { state: { institueData: response.data, continent: 'Asia', countryId: countryId } });
+
+    } catch(error) {
+      console.log('error on institute list fetch =-> ', error)
+    }
+  }
+
   return (
     <CRow>
       <CCol xs={12}>
@@ -62,13 +73,13 @@ const Cards = () => {
               {data.map((country,index) => (
                  <CCol key={index} xs={4}>
                  <CCard style={{ width: '18rem', marginTop:'10px' }}>
-                   <CCardImage orientation="top" src="http://localhost:4000/assets/images/ang-blue1.png" style={{width:'200px', height:'200px', position:'relative', left:'15%', marginTop:'10px'}} />
+                   <CCardImage orientation="top" src={country.imagePath} style={{height:'150px'}}/>
                    <CCardBody>
                      <CCardTitle>{country.name}</CCardTitle>
                      <CCardText>
                      Asia is the largest continent in the world by both land area and population.
                      </CCardText>
-                     <CButton color="primary" href="#">
+                     <CButton color="primary" onClick={() => handleDetailsClick(country._id)}>
                        Explore
                      </CButton>
                    </CCardBody>

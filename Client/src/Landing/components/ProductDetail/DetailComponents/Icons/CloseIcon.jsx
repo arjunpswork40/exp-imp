@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 const CloseIcon = ({ fillColor }) => {
   return (
@@ -11,5 +12,9 @@ const CloseIcon = ({ fillColor }) => {
     </svg>
   );
 };
+
+CloseIcon.propTypes = {
+  fillColor: PropTypes.string.isRequired
+}
 
 export default CloseIcon;

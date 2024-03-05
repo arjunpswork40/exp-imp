@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from 'prop-types';
+
 import { Backdrop, IconButton } from "@mui/material";
 import prod1 from "../Pictures/image-product-1.jpg";
 import prod2 from "../Pictures/image-product-2.jpg";
@@ -14,11 +16,22 @@ import CloseIcon from "./Icons/CloseIcon";
 import PreviousIcon from "./Icons/PreviousIcon";
 import NextIcon from "./Icons/NextIcon";
 
-const IMAGES = [prod1, prod2, prod3, prod4];
-const THUMBS = [thumb1, thumb2, thumb3, thumb4];
-const BackdropGallery = ({ open, handleClose, currentPassedImage }) => {
+
+const BackdropGallery = ({ open, handleClose, currentPassedImage,images,thumbs }) => {
+
+  const IMAGES = images;
+  const THUMBS = thumbs;
+
   const [backdropImage, setBackdropImage] = useState(currentPassedImage);
   const [currentPassedImageIndex, setCurrentPassedImageIndex] = useState(1);
+  const [tagStatus, setTagStatus]=useState(false)
+
+  const getCurrentImageStatus = (imageURL) => {
+    const extension = imageURL ? imageURL.split('.').pop().toLowerCase() : 'jpg';
+    const videoExtensions = ['mp4', 'webm', 'ogg'];
+    const tagStatus = videoExtensions.includes(extension)
+    return tagStatus
+  }
 
   useEffect(() => {
     setBackdropImage(currentPassedImage);
@@ -28,15 +41,21 @@ const BackdropGallery = ({ open, handleClose, currentPassedImage }) => {
   }, [currentPassedImage]);
 
   const handleClick = (index = null) => {
+    const tagStatus = getCurrentImageStatus(IMAGES[index])
+    setTagStatus(tagStatus);
     setBackdropImage(IMAGES[index]);
     setCurrentPassedImageIndex(index);
   };
 
   const handleIncrement = () => {
     if (currentPassedImageIndex === IMAGES.length - 1) {
+      const tagStatus = getCurrentImageStatus(IMAGES[0])
+      setTagStatus(tagStatus);
       setBackdropImage(IMAGES[0]);
       setCurrentPassedImageIndex(0);
     } else {
+      const tagStatus = getCurrentImageStatus(IMAGES[currentPassedImageIndex + 1])
+      setTagStatus(tagStatus);
       setBackdropImage(IMAGES[currentPassedImageIndex + 1]);
       setCurrentPassedImageIndex(currentPassedImageIndex + 1);
     }
@@ -44,9 +63,13 @@ const BackdropGallery = ({ open, handleClose, currentPassedImage }) => {
 
   const handleDecrement = () => {
     if (currentPassedImageIndex === 0) {
+      const tagStatus = getCurrentImageStatus(IMAGES[IMAGES.length - 1])
+      setTagStatus(tagStatus);
       setBackdropImage(IMAGES[IMAGES.length - 1]);
       setCurrentPassedImageIndex(IMAGES.length - 1);
     } else {
+      const tagStatus = getCurrentImageStatus(IMAGES[currentPassedImageIndex - 1])
+      setTagStatus(tagStatus);
       setBackdropImage(IMAGES[currentPassedImageIndex - 1]);
       setCurrentPassedImageIndex(currentPassedImageIndex - 1);
     }
@@ -107,14 +130,27 @@ const BackdropGallery = ({ open, handleClose, currentPassedImage }) => {
           >
             <NextIcon />
           </IconButton>
-          <img
-            src={backdropImage}
-            alt="selected-product"
-            style={{ cursor: "auto" }}
-          />
+          {tagStatus ? (
+            <video width="450" height="450" controls={true} style={{cursor:'pointer'}}>
+              <source src={backdropImage} type={`video/${backdropImage.split('.').pop().toLowerCase()}`} />
+              Your browser does not support the video tag.
+            </video>
+          ) : (
+            <img
+              src={backdropImage}
+              alt="selected-product"
+              width='550px'
+              style={{ cursor: "auto" }}
+            />
+          )}
+
         </div>
         <div className="thumbnails">
           {THUMBS.map((th, index) => {
+            const extension = th ? th.split('.').pop().toLowerCase() : '';
+            const videoExtensions = ['mp4', 'webm', 'ogg'];
+            const tagStatusTh = videoExtensions.includes(extension)
+
             return (
               <div
                 className="img-holder-backd"
@@ -130,7 +166,14 @@ const BackdropGallery = ({ open, handleClose, currentPassedImage }) => {
                     index === currentPassedImageIndex && "activated"
                   }`}
                 ></div>
-                <img src={th} alt={`product-${index + 1}`} />
+                {tagStatusTh ? (
+                  <video width="75" height="75" controls={false} style={{cursor:'pointer'}}>
+                    <source src={th} type={`video/${th.split('.').pop().toLowerCase()}`} />
+                    Your browser does not support the video tag.
+                  </video>
+                ) : (
+                  <img src={th} width='75px' alt={`product-${index + 1}`} />
+                )}
               </div>
             );
           })}
@@ -139,5 +182,13 @@ const BackdropGallery = ({ open, handleClose, currentPassedImage }) => {
     </Backdrop>
   );
 };
+
+BackdropGallery.propTypes = {
+  open: PropTypes.bool.isRequired,
+  handleClose: PropTypes.func.isRequired,
+  currentPassedImage: PropTypes.string,
+  images: PropTypes.array.isRequired,
+  thumbs: PropTypes.array.isRequired,
+}
 
 export default BackdropGallery;

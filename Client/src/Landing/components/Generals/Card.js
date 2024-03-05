@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { BsFillBagFill } from "react-icons/bs";
 
-const Card = ({ img, title, star, reviews, prevPrice, newPrice }) => {
+const Card = ({ img, title, shortName, state, prevPrice, newPrice }) => {
   return (
     <>
       <section className="card">
@@ -11,16 +11,13 @@ const Card = ({ img, title, star, reviews, prevPrice, newPrice }) => {
         <div className="card-details">
           <h3 className="card-title">{title}</h3>
           <section className="card-reviews">
-            {star} {star} {star} {star}
-            <span className="total-reviews">{reviews}</span>
+            <span className="total-reviews">{state}</span>
           </section>
           <section className="card-price">
             <div className="price">
-              <del>{prevPrice}</del> {newPrice}
+              {shortName}
             </div>
-            <div className="bag">
-              <BsFillBagFill className="bag-icon" />
-            </div>
+
           </section>
         </div>
       </section>
@@ -28,12 +25,12 @@ const Card = ({ img, title, star, reviews, prevPrice, newPrice }) => {
   );
 };
 Card.propTypes = {
-  img: PropTypes.func.isRequired,
-  title: PropTypes.func.isRequired,
-  star: PropTypes.func.isRequired,
-  reviews: PropTypes.func.isRequired,
-  prevPrice: PropTypes.func.isRequired,
-  newPrice: PropTypes.func.isRequired,
+  img: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  shortName: PropTypes.string.isRequired,
+  state: PropTypes.string.isRequired,
+  prevPrice: PropTypes.string.isRequired,
+  newPrice: PropTypes.string.isRequired,
 
 };
 export default Card;

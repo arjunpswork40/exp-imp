@@ -1,26 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CartIcon from "./Icons/CartIcon";
 import QuantityButton from "./QuantityButton";
+import { IconButton } from "@mui/material";
+import DocumentIcon from "./Icons/DocumentIcon";
 
-const Description = ({ onQuant, onAdd, onRemove, onSetOrderedQuant }) => {
+import PropTypes from 'prop-types';
+const Description = ({institutrDetails  }) => {
+  const [docDetails, setDocDetails] = useState([])
+
+  useEffect(() => {
+    setDocDetails(institutrDetails.relatedDocuments);
+  },[institutrDetails.relatedDocuments])
+  console.log(docDetails)
   return (
     <section className="description">
-      <p className="pre">sneaker company</p>
-      <h1>fall limited edition sneakers</h1>
+      <p className="pre">{institutrDetails.shortName}</p>
+      <h1>{institutrDetails.name}</h1>
       <p className="desc">
-        These low-profile sneakers are your perfect casual wear companion.
-        Featuring a durable rubber outer sole, they’ll withstand everything the
-        weather can offer
+      {institutrDetails.description}
       </p>
       <div className="price">
         <div className="main-tag">
-          <p>$125.00</p>
-          <p>50%</p>
+          <p>Documents</p>
         </div>
-        <s>$250.00</s>
       </div>
-      <div className="buttons">
-        <QuantityButton onQuant={onQuant} onRemove={onRemove} onAdd={onAdd} />
+      <div className="buttons" style={{display:'flow'}}>
+        {/* <QuantityButton onQuant={onQuant} onRemove={onRemove} onAdd={onAdd} />
         <button
           className="add-to-cart"
           onClick={() => {
@@ -29,10 +34,44 @@ const Description = ({ onQuant, onAdd, onRemove, onSetOrderedQuant }) => {
         >
           <CartIcon />
           add to cart
-        </button>
+        </button> */}
+
+         <div className="grid-container">
+         {docDetails && docDetails.map((item,index) => {
+          const parts = item.split('/');
+          const fileNameWithExtension = parts[parts.length - 1];
+          let fileName = fileNameWithExtension;
+          if (fileNameWithExtension.length > 6) {
+            const fileNameWithoutExtension = fileNameWithExtension.split('.')[0];
+            const truncatedFileName = fileNameWithoutExtension.slice(0, 6) + '...';
+            fileName =  truncatedFileName + '.' + fileNameWithExtension.split('.').pop();
+          }
+          return(
+
+          <a className="grid-item" href={item} key={index}>
+          <IconButton
+            sx={{ color: "#fff", bgcolor: "transparent", alignSelf: "flex-end" }}
+          >
+            <DocumentIcon/>
+          </IconButton>
+          <br></br>
+          {fileName}
+          </a>
+          )
+
+        })}
+      </div>
       </div>
     </section>
   );
 };
+
+Description.propTypes = {
+  institutrDetails: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object
+  ]).isRequired,
+
+}
 
 export default Description;

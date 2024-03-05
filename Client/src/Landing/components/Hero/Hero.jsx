@@ -16,15 +16,15 @@ const Hero = () => {
                 <span
 
                 >
-                    Global Trade, Local Expertise
+                    Empowering Minds, Building Futures
                 </span>
 
-                <div className={css.text2}>
+                <div style={{margin:'10px'}} className={css.text2}>
                     <span >
-                    Global Link
+                    Infinite Insight
                     </span>
                     <span >
-                    Connecting businesses worldwide for seamless trade.
+                    AI Nexus: Sparking Innovation Together.
                     </span>
                 </div>
                 </div>
@@ -57,7 +57,7 @@ const Hero = () => {
                     <RiShoppingBagFill/>
 
                     <div className={css.signup}>
-                        <span>Best Signup Offers</span>
+                        <span>Inspire. Connect. Innovate.</span>
 
                         <div>
                             <BsArrowRight/>
