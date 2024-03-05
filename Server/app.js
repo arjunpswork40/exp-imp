@@ -35,7 +35,6 @@ app.use((req, res, next) => {
 
 //Admin Routes
 
-const authRoutes = require('./routes/api/admin/adminAuthRoutes')
 const userAuthRoutes = require('./routes/api/user/auth/userAuthRoutes')
 const basicConfig = require('./routes/admin/basicConfig/basicConfRoutes')
 const adminDashboardRoutes = require('./routes/api/admin/dashboardRoutes')
@@ -116,7 +115,6 @@ connectDb();
 // app.use("/users", usersRouter);
 
 // Admin Routes
-app.use("/api/admin",authRoutes);
 app.use("/api/admin/dashboard",adminDashboardRoutes)
 app.use("/api/user",userAuthRoutes);
 app.use("/",basicConfig);

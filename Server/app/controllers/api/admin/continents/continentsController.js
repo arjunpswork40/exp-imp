@@ -1,5 +1,4 @@
 const { makeJsonResponse } = require("../../../../../utils/response");
-const AppDetail = require("../../../../models/AppDetail");
 const Africa = require("../../../../models/continents/Africa");
 const Asia = require("../../../../models/continents/Asia");
 const Australia = require("../../../../models/continents/Australia");
