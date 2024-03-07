@@ -20,31 +20,32 @@ const Cards = () => {
   const navigate = useNavigate();
   const token = AuthService.getAccessToken();
 
-  const fetchData = async () => {
-    let response = [];
-    try{
 
-      response = await AfricaController.fetchCountryList(token);
-      console.log('response==>',response.data)
-      localStorage.setItem('tokenStatus', response.data.tokenStatus);
-      setData(response.data);
-    } catch (error) {
-      if (error.response) {
-        console.log('Error Response:', error.response.data);
-        console.log('Status Code:', error.response.status);
-        navigate('/admin/login', { replace: true });
-      } else if (error.request) {
-        console.log('No response received:', error.request);
-      } else {
-        navigate('/admin/login', { replace: true });
-        console.log('Error:', error.message);
-      }
-    }
-  }
 
   useEffect(() => {
+    const fetchData = async () => {
+      let response = [];
+      try{
+
+        response = await AfricaController.fetchCountryList(token);
+        console.log('response==>',response.data)
+        localStorage.setItem('tokenStatus', response.data.tokenStatus);
+        setData(response.data);
+      } catch (error) {
+        if (error.response) {
+          console.log('Error Response:', error.response.data);
+          console.log('Status Code:', error.response.status);
+          navigate('/admin/login', { replace: true });
+        } else if (error.request) {
+          console.log('No response received:', error.request);
+        } else {
+          navigate('/admin/login', { replace: true });
+          console.log('Error:', error.message);
+        }
+      }
+    }
     fetchData()
-  },[]);
+  },[token,navigate]);
 
 
   const handleDetailsClick = async(countryId) => {

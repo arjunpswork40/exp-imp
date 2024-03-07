@@ -1,15 +1,6 @@
 import React, { useState, useEffect } from "react";
 import BackdropGallery from "./BackdropGallery";
 
-import prod1 from "../Pictures/image-product-1.jpg";
-import prod2 from "../Pictures/image-product-2.jpg";
-import prod3 from "../Pictures/image-product-3.jpg";
-import prod4 from "../Pictures/image-product-4.jpg";
-
-import thumb1 from "../Pictures/image-product-1-thumbnail.jpg";
-import thumb2 from "../Pictures/image-product-2-thumbnail.jpg";
-import thumb3 from "../Pictures/image-product-3-thumbnail.jpg";
-import thumb4 from "../Pictures/image-product-4-thumbnail.jpg";
 import PropTypes from 'prop-types';
 
 // const IMAGES = [prod1, prod2, prod3, prod4];

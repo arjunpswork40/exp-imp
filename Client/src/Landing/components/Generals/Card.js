@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { BsFillBagFill } from "react-icons/bs";
 
 const Card = ({ img, title, shortName, state, prevPrice, newPrice }) => {
   return (

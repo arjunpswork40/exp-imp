@@ -2,14 +2,14 @@ import React, { Suspense, useEffect } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { CSpinner, useColorModes } from '@coreui/react';
-import ProtectedRoute from './ProtectedRoute';
+// import ProtectedRoute from './ProtectedRoute';
 
 import './scss/style.scss';
 
 // Containers
 const DefaultLayout = React.lazy(() => import('./layout/DefaultLayout'));
 const LandingPage = React.lazy(() => import('./Landing/components/Home/Home'));
-const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
+// const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 
 // Pages
 const AdminLogin = React.lazy(() => import('./views/pages/Admin/login/Login'));

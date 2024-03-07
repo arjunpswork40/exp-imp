@@ -6,7 +6,7 @@ import { Pagination, Navigation } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import { motion } from "framer-motion"
+// import { motion } from "framer-motion"
 import Africa from "../../assets/africa.png"
 import Asia from "../../assets/asia.png"
 import Australia from "../../assets/Australia.png"

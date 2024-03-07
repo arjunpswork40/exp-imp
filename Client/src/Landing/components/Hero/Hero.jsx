@@ -3,10 +3,10 @@ import css from './Hero.module.css';
 import HeroImg from '../../assets/hero2.png';
 import {RiShoppingBagFill} from 'react-icons/ri';
 import {BsArrowRight} from 'react-icons/bs';
-import {motion} from 'framer-motion'
+// import {motion} from 'framer-motion'
 
 const Hero = () => {
-    const transition = { duration:3, type:"spring"}
+    // const transition = { duration:3, type:"spring"}
     return (
         <div className={css.container}>
 

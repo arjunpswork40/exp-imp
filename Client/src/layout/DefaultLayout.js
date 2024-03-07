@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { AppContent, AppSidebar, AppFooter, AppHeader } from '../components/index';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import AuthService from '../services/Admin/Auth/AuthServices';
 // import jwt from 'jsonwebtoken';
 
 const DefaultLayout = () => {
   const isAdminRoute = window.location.pathname === '/admin' || window.location.pathname === '/admin/';
-  const accessToken = AuthService.getAccessToken();
+  // const accessToken = AuthService.getAccessToken();
   const tokenStatus = AuthService.getTokenStatus();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   console.log('tokenStatus=>',tokenStatus);
   // useEffect(() => {
   //   // Check if the access token is present and not expired

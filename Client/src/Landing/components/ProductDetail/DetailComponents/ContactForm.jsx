@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
   MDBInput,
-  MDBCheckbox,
   MDBBtn,
   MDBTextArea
 } from 'mdb-react-ui-kit';
@@ -63,7 +62,7 @@ const ContactForm = ({institutrDetails,continent})  =>{
 
     setFormData(updatedFormData)
 
-  },[institutrDetails])
+  },[institutrDetails,setFormData,formData])
 
   const handleChange = (e) => {
     setFormData({

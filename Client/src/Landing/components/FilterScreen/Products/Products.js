@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import "./Product.css";
-import Card from "../../Generals/Card"
 
 const Products = ({ result,handleDetailsCreatClick }) => {
   return (

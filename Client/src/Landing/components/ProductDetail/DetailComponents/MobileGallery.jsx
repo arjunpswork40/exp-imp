@@ -1,10 +1,6 @@
 import { IconButton } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
-import prod1 from "../Pictures/image-product-1.jpg";
-import prod2 from "../Pictures/image-product-2.jpg";
-import prod3 from "../Pictures/image-product-3.jpg";
-import prod4 from "../Pictures/image-product-4.jpg";
 import NextIcon from "./Icons/NextIcon";
 import PreviousIcon from "./Icons/PreviousIcon";
 import PropTypes from 'prop-types';

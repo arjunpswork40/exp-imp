@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Category from "./Category/Category";
-import Price from "./Price/Price";
-import Colors from "./Colors/Colors";
 import "./Sidebar.css";
 import Search from "./Search/Search";
 import { useState } from "react";

@@ -28,18 +28,18 @@ export default function ProductDetail() {
     }
     fetchData()
 
-  },[])
+  },[continent,instituteId])
 
-  const [quant, setQuant] = useState(0);
-    // const [orderedQuant, setOrderedQuant] = useState(0);
+  // const [quant, setQuant] = useState(0);
+  //   // const [orderedQuant, setOrderedQuant] = useState(0);
 
-    const addQuant = () => {
-        setQuant(quant + 1);
-    };
+  //   const addQuant = () => {
+  //       setQuant(quant + 1);
+  //   };
 
-    const removeQuant = () => {
-        setQuant(quant - 1);
-    };
+  //   const removeQuant = () => {
+  //       setQuant(quant - 1);
+  //   };
 
     // const resetQuant = () => {
     //     setQuant(0);

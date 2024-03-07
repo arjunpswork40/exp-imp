@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import CartIcon from "./Icons/CartIcon";
-import QuantityButton from "./QuantityButton";
+// import CartIcon from "./Icons/CartIcon";
+// import QuantityButton from "./QuantityButton";
 import { IconButton } from "@mui/material";
 import DocumentIcon from "./Icons/DocumentIcon";
 

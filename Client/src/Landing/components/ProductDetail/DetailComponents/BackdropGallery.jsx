@@ -2,15 +2,6 @@ import React, { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 
 import { Backdrop, IconButton } from "@mui/material";
-import prod1 from "../Pictures/image-product-1.jpg";
-import prod2 from "../Pictures/image-product-2.jpg";
-import prod3 from "../Pictures/image-product-3.jpg";
-import prod4 from "../Pictures/image-product-4.jpg";
-
-import thumb1 from "../Pictures/image-product-1-thumbnail.jpg";
-import thumb2 from "../Pictures/image-product-2-thumbnail.jpg";
-import thumb3 from "../Pictures/image-product-3-thumbnail.jpg";
-import thumb4 from "../Pictures/image-product-4-thumbnail.jpg";
 
 import CloseIcon from "./Icons/CloseIcon";
 import PreviousIcon from "./Icons/PreviousIcon";
@@ -38,7 +29,7 @@ const BackdropGallery = ({ open, handleClose, currentPassedImage,images,thumbs }
     IMAGES.forEach((imgg, index) => {
       imgg === currentPassedImage && setCurrentPassedImageIndex(index);
     });
-  }, [currentPassedImage]);
+  }, [currentPassedImage,IMAGES]);
 
   const handleClick = (index = null) => {
     const tagStatus = getCurrentImageStatus(IMAGES[index])

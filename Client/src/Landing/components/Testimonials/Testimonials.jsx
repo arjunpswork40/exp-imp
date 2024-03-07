@@ -3,9 +3,9 @@ import css from './Testimonials.module.css';
 import Hero from '../../assets/testimonialHero3.png';
 import { TestimonialsData } from "../../data/testimonials"
 import { Swiper, SwiperSlide } from "swiper/react";
-import { motion } from 'framer-motion';
+// import { motion } from 'framer-motion';
 const Testimonials = () => {
-    const transition = { duration:3, type:"spring"}
+    // const transition = { duration:3, type:"spring"}
 
     return(
         <div className={css.testimonials}>

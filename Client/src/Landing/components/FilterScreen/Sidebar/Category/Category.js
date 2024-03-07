@@ -5,11 +5,11 @@ import Input from "../../../Generals/Input";
 
 function Category({ handleChange,data,styleDetails }) {
   let countries = data?.data?.data ?? [];
-  let checkedValue = false;
-  let countryIds = styleDetails.countryIds;
-  if( Array.isArray(countryIds) && countryIds.includes('all')) {
-    checkedValue = true;
-  }
+  // let checkedValue = false;
+  // let countryIds = styleDetails.countryIds;
+  // if( Array.isArray(countryIds) && countryIds.includes('all')) {
+  //   checkedValue = true;
+  // }
   return (
     <div>
       <h2 className="sidebar-title">Countries</h2>

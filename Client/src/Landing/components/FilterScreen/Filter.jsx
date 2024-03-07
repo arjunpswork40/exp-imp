@@ -1,87 +1,11 @@
-// import React, { useState } from "react";
-// import css from './Filter.module.css';
-// import Header from "../header/Header";
-// import Dropdown from 'react-bootstrap/Dropdown';
-// import DropdownButton from 'react-bootstrap/DropdownButton';
-// import Footer from '../Footer/Footer';
-// import Select from "react-select";
 
-// const options = [
-//     { value: "electronics", label: "Electronics" },
-//     { value: "clothing", label: "Clothing" },
-//     { value: "books", label: "Books" },
-//     // Add more category options as needed
-//   ];
-
-// const Filter = () => {
-//     const [selectedCategory, setSelectedCategory] = useState(null);
-
-//     const handleChange = (selectedOption) => {
-//       setSelectedCategory(selectedOption);
-//     };
-
-//     return(
-//         <>
-//             <Header/>
-//             <header class={css.fixedHeader}>
-//                 <div class={css.filterHeader}>
-//                     <DropdownButton id="dropdown-basic-button" title="Country" variant="secondary" className={css.dropdown}>
-//                         <Dropdown.Item href="#/action-1">India</Dropdown.Item>
-//                         <Dropdown.Item href="#/action-2">Africa</Dropdown.Item>
-//                         <Dropdown.Item href="#/action-3">UK</Dropdown.Item>
-//                     </DropdownButton>
-//                     <DropdownButton id="dropdown-basic-button" title="Filter" variant="secondary" className={css.dropdown}>
-//                         <Dropdown.Item href="#/action-1">India</Dropdown.Item>
-//                         <Dropdown.Item href="#/action-2">Africa</Dropdown.Item>
-//                         <Dropdown.Item href="#/action-3">UK</Dropdown.Item>
-//                     </DropdownButton>
-//                     <input type="text" className={css.search} placeholder='Search' />
-//                 </div>
-//             </header>
-
-//             <div className={css.wrapper}>
-//                 <div className={css.left}>
-//                     <div className={css.leftMainDiv}>
-//                         <section className={css.leftSection}>
-//                             <div  className={css.leftHeaderOne}>
-//                                 <div className={css.leftHeaderTwo}>
-//                                     <span>Filters</span>
-
-//                                 </div>
-//                             </div>
-//                         </section>
-//                     </div>
-//                     <Select
-//                                 options={options}
-//                                 value={selectedCategory}
-//                                 onChange={handleChange}
-//                                 className={css.categoryDropdown}
-//                                 isSearchable={false} // Disable search input
-//                                 placeholder="Select Category"
-//                             />
-//                 </div>
-//                 <div className={css.right}>
-
-//                 </div>
-//             </div>
-
-//             <Footer />
-
-
-//         </>
-//     )
-// }
-// export default Filter
-
-
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Products from './Products/Products'
 import Recommended from './Recommended/Recommended'
 import css from "./Filter.module.css"
 import Header from '../header/Header'
 import Sidebar from './Sidebar/Sidebar'
 
-import products from '../../db/db'
 import Card from '../Generals/Card'
 import Footer from '../Footer/Footer'
 import LandingController from '../../../controllers/Landing/LandingController'
@@ -89,15 +13,19 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Filter() {
   const [selectedCategory, setSelectedCategory] = useState(null);
-
+  console.log(selectedCategory)
   // const handleDetailsCreatClick = async(institueId) => {
   //   navigate('/educational-institutes-details', { state: { institueId: institueId, continent: styleDetails.value } });
   // }
-  const handleDetailsCreatClick = async (instituteId) => {
-    navigate(`/educational-institutes-details/${styleDetails.value}/${instituteId}`);
-  };
-
   const navigate = useNavigate();
+
+  const [ styleDetails, setStyleDetails] = useState({
+    value:'Asia',style: {color:'black', backgroundColor:'white'},countryIds:['all']
+  })
+  const handleDetailsCreatClick = useCallback(async (instituteId) => {
+    navigate(`/educational-institutes-details/${styleDetails.value}/${instituteId}`);
+  },[navigate, styleDetails]);
+
 
   // ----------- Input Filter -----------
   const [query, setQuery] = useState("");
@@ -131,7 +59,7 @@ export default function Filter() {
         setSelectedCountryIds(selectedCountryIds)
       }
     } else {
-      const newIdArray = selectedCountryIds.filter(entry => entry != event.target.value);
+      const newIdArray = selectedCountryIds.filter(entry => entry !== event.target.value);
       postData.countryIds = newIdArray
 
       setSelectedCountryIds(newIdArray)
@@ -152,7 +80,7 @@ export default function Filter() {
         let instituteData = [];
         if(result.data.length > 0) {
           instituteData = result.data.map((item,index)=> {
-            return <a href='#' onClick={() => handleDetailsCreatClick(item._id)}  className="card-link" key={index}><Card
+            return <div onClick={() => handleDetailsCreatClick(item._id)}  className="card-link" key={index}><Card
                   key={index}
                   img={item.titleImage ?? 'http://localhost:4000/public/assets/images/ang-blue1.png'}
                   title={item.name}
@@ -160,7 +88,7 @@ export default function Filter() {
                   state={item.state}
                   prevPrice='0'
                   newPrice='0'
-                /></a>
+                /></div>
           })
         }
         setInstituteByCountry(instituteData)
@@ -194,7 +122,7 @@ export default function Filter() {
           let instituteData = [];
           if (result.data.length > 0) {
             instituteData = result.data.map((item, index) => (
-              <a href='#' onClick={() => handleDetailsCreatClick(item._id)} className="card-link" key={index}>
+              <div onClick={() => handleDetailsCreatClick(item._id)} className="card-link" key={index}>
                 <Card
                   key={index}
                   img={item.titleImage ?? 'http://localhost:4000/public/assets/images/ang-blue1.png'}
@@ -204,7 +132,7 @@ export default function Filter() {
                   prevPrice='0'
                   newPrice='0'
                 />
-              </a>
+              </div>
             ));
           }
           setInstituteByCountry(instituteData);
@@ -215,7 +143,7 @@ export default function Filter() {
     };
 
     fetchData();
-  }, []);
+  }, [handleDetailsCreatClick]);
 
 
 
@@ -247,7 +175,7 @@ export default function Filter() {
         let instituteData = [];
         if(result.data.length > 0) {
           instituteData = result.data.map((item,index)=> {
-            return <a href='#' className="card-link" onClick={() => handleDetailsCreatClick(item._id)} key={index}><Card
+            return <div className="card-link" onClick={() => handleDetailsCreatClick(item._id)} key={index}><Card
                   key={index}
                   img={item.titleImage ?? 'http://localhost:4000/public/assets/images/ang-blue1.png'}
                   title={item.name}
@@ -255,7 +183,7 @@ export default function Filter() {
                   state={item.state}
                   prevPrice='0'
                   newPrice='0'
-                /></a>
+                /></div>
           })
         }
         setInstituteByCountry(instituteData)
@@ -265,9 +193,6 @@ export default function Filter() {
     }
   };
 
-  const [ styleDetails, setStyleDetails] = useState({
-    value:'Asia',style: {color:'black', backgroundColor:'white'},countryIds:['all']
-  })
 
 
   return (
