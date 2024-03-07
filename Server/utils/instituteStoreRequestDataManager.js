@@ -4,7 +4,7 @@ module.exports = {
         let titleImage = files?.titleImage;
         let relatedDocuments = files['relatedDocuments[]'];
         let relatedVideos = files['relatedVideos[]'];
-        let baseUrl = process.env.BASE_URL || 'http://localhost:4000'
+        let baseUrl = process.env.BASE_URL || 'http://65.1.110.123:4000'
         if(titleImage?.length > 0) {
             data.titleImage =  baseUrl + '/' + titleImage[0].path.replaceAll('\\','/')
         }
